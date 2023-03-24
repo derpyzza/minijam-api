@@ -1,5 +1,7 @@
 package core
 
+import "net/http"
+
 type WinnerData struct {
 	Name     string  `json:"name"`
 	Wins     float64 `json:"wins"`
@@ -7,7 +9,7 @@ type WinnerData struct {
 }
 
 // get and return jam winner data.
-func returnWinners() {
+func GetWinners(w http.ResponseWriter, r *http.Request) {
 	/*
 		fetch latest jam - 1
 		query database for the latest jam the server has data on

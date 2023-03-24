@@ -1,0 +1,11 @@
+JAMS:
+
+ID, URL, NAME, IMAGE, WINNER, WINNER SCORE, WINNER MINI JAM SCORE, WINNER ENTRY URL
+
+119, "minijam.com/", "image.url/", ILPrinny, 4.167, 38, "ILPrinny.com/games/"
+
+WINNERS:
+
+ID, URL, NAME, TOTAL WINS, TOTAL JAMS, TOTAL SCORE
+
+1, "https://yumehiko.itch.io/", yumehiko, 3, 30, 3000

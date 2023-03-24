@@ -2,9 +2,9 @@ package core
 
 import (
 	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
+
+	"minijamapi.com/packages/util"
 )
 
 func FetchLatest() Jam {
@@ -13,15 +13,10 @@ func FetchLatest() Jam {
 
 	// returns response from url
 	resp, err := http.Get(url)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	util.CheckErr(err)
 
 	jsonerr := json.NewDecoder(resp.Body).Decode(&jam)
-	if jsonerr != nil {
-		fmt.Println("Json err:")
-		log.Fatalln(jsonerr)
-	}
+	util.CheckErr(jsonerr, "JSON ERROR: ")
 
 	defer resp.Body.Close()
 
@@ -38,17 +33,12 @@ func GetJams(w http.ResponseWriter, r *http.Request) {
 	url := "https://minijamofficial.com/api/fetchMiniJams?n=" + index
 
 	resp, err := http.Get(url)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	util.CheckErr(err)
 
 	defer resp.Body.Close()
 
 	jsonerr := json.NewDecoder(resp.Body).Decode(&jam)
-	if jsonerr != nil {
-		fmt.Println("Json err:")
-		log.Fatalln(jsonerr)
-	}
+	util.CheckErr(jsonerr, "JSON ERROR: ")
 	json.NewEncoder(w).Encode(jam)
 }
 

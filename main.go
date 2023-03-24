@@ -3,12 +3,23 @@ package main
 import (
 	"fmt"
 
+	"database/sql"
+
+	_ "github.com/mattn/go-sqlite3"
+
 	"minijamapi.com/packages/core"
+	"minijamapi.com/packages/util"
 )
 
 func main() {
 	fmt.Println("hello there;")
+	db, err := sql.Open("sqlite3", "./test.db")
+	util.CheckErr(err)
+
+	// do stuff
 	core.Serve()
+
+	db.Close()
 }
 
 // worry about this later.

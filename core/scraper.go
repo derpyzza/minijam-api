@@ -12,7 +12,7 @@ func ScrapeItch() WinnerData {
 	c := colly.NewCollector(
 	// colly.AllowedDomains("https://itch.io/jam/"),
 	)
-
+	// winner name.
 	c.OnHTML(
 		".first_place .game_summary > h3",
 		func(e *colly.HTMLElement) {
@@ -20,12 +20,28 @@ func ScrapeItch() WinnerData {
 			fmt.Println(name)
 		},
 	)
-
+	// winner's itch page
+	c.OnHTML(
+		".first_place .game_summary > h3",
+		func(e *colly.HTMLElement) {
+			url := e.ChildAttr("a", "href")
+			fmt.Println(url)
+		},
+	)
+	// winner's total score
 	c.OnHTML(
 		".first_place .ranking_results_table > tbody > tr:nth-child(1)",
 		func(e *colly.HTMLElement) {
 			score := e.ChildText("td:nth-child(3)")
 			fmt.Println("score: ", score)
+		},
+	)
+	// winning game's url
+	c.OnHTML(
+		".first_place .game_summary > h2",
+		func(e *colly.HTMLElement) {
+			url := e.ChildAttr("a", "href")
+			fmt.Println(url)
 		},
 	)
 

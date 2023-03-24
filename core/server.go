@@ -20,10 +20,16 @@ func Serve() {
 
 	router := mux.NewRouter()
 
-	// GET list of jams.
+	// {{ API ENDPOINTS --
+
+	// list of jams.
 	router.HandleFunc("/api/jams", GetJams).Methods("GET")
-	// GET latest jam.
+	// latest jam.
 	router.HandleFunc("/api/latest", GetLatest).Methods("GET", "OPTIONS")
+	// winners.
+	router.HandleFunc("/api/winners", GetWinners).Methods("GET", "OPTIONS")
+
+	// -- API ENDPOINTS }}
 
 	ScrapeItch()
 
