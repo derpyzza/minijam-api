@@ -7,12 +7,14 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 
+	"github.com/charmbracelet/log"
 	"minijamapi.com/packages/core"
 	"minijamapi.com/packages/util"
 )
 
 func main() {
-	fmt.Println("hello there;")
+	fmt.Println("hello")
+	log.Info("Starting the server")
 	db, err := sql.Open("sqlite3", "./test.db")
 	util.CheckErr(err)
 

@@ -2,11 +2,11 @@ package core
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	"github.com/savioxavier/termlink"
+	"github.com/charmbracelet/log"
 )
 
 type Jam struct {
@@ -33,6 +33,7 @@ func Serve() {
 
 	ScrapeItch()
 
-	fmt.Println(termlink.ColorLink("App served on Port :8080", "http://localhost:8080/api/latest", "italic blue"))
+	log.Info("App served at")
+	fmt.Println(termlink.ColorLink("\t~> Port :8080", "http://localhost:8080/api/latest", "italic blue"))
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
